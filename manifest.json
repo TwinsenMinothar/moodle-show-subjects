@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Nome das Materias",
+  "version": "1.0",
+  "description": "Mostra nome das materias",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "browser_action": {
+    "default_popup": ""
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "https://www.moodlepresencial.ufop.br/*"
+      ]
+    }
+  ]
+}
