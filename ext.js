@@ -1,16 +1,18 @@
 let checkmark = document.getElementById("on-off-switch");
-
+let isChecked;
 readLocalStorage().then((r) => {
-    if (r === 'on')
+    if (r === 'on'){
         checkmark.checked = true
-    else
+        isChecked = true;
+    }
+    else{
         checkmark.checked = false;
+        isChecked = false;
+    }
+    checkmark.addEventListener("click", click)
+});
 
-    let isChecked = checkmark.checked;
-    console.log(isChecked);
-
-    checkmark.addEventListener("click", () => isChecked ? uncheck() : check())
-})
+// Functions :
 
 function readLocalStorage() {
     return new Promise((resolve, reject) => {
@@ -23,15 +25,17 @@ function readLocalStorage() {
     });
 }
 
+function click() {
+    isChecked ? uncheck() : check()
+}
+
 function check() {
     chrome.storage.sync.set({ state: 'on' });
     isChecked = true;
-    console.log('check');
 }
 
 function uncheck() {
     chrome.storage.sync.set({ state: 'off' });
     isChecked = false;
-    console.log('uncheck');
 }
 
